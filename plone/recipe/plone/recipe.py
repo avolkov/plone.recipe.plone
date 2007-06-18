@@ -1,9 +1,12 @@
 import os.path
+import re
 
 import plone.recipe.distros
 import zc.recipe.egg
 
 import dist_plone.platforms.independent
+
+egg_name_re = re.compile(r'(\S+?)([=<>!].+)')
 
 class Recipe:
 
@@ -24,7 +27,7 @@ class Recipe:
         self.distros = plone.recipe.distros.Recipe(buildout, name, options)
         
         # These are passed onto zc.recipe.egg.
-        options.setdefault('eggs', self.plone_eggs())
+        options['eggs'] = self.plone_eggs()
         self.egg = zc.recipe.egg.Egg(buildout, options['recipe'], options)
         
         # These options are set, but not used. Another recipe may reference it
@@ -53,13 +56,33 @@ class Recipe:
 
     def plone_eggs(self):
         """Read the eggs from dist_plone
-        """        
+        """
+        
+        egg_spec = self.options.get('eggs', '')
+        explicit_eggs = {}
+        for spec in egg_spec.split():
+            name = spec
+            version = ''
+            match = egg_name_re.match(spec)
+            if match:
+                name = match.groups(1)
+                version = match.groups(2)
+            explicit_eggs[name] = version
+        
         eggs = []
         for pkg in self.dist.core_packages:
             name = pkg.name
-            if pkg.version is not None:
-                name += "==%s" % pkg.version
-            eggs.append(name)
+            if name in explicit_eggs:
+                eggs.append(name + explicit_eggs[name])
+                del explicit_eggs[name]
+            else:
+                if pkg.version is not None:
+                    name += "==%s" % pkg.version
+                eggs.append(name)
+        
+        for name, version in explicit_eggs.items():
+            eggs.append(name + version)
+        
         return '\n'.join(eggs)
         
     def plone2_downloads(self):
