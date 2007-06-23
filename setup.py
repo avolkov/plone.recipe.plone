@@ -3,7 +3,7 @@ import sys, os
 
 name = "plone.recipe.plone"
 
-version = '3.0b3'
+version = '3.0b4'
 
 setup(name=name,
       version=version,
