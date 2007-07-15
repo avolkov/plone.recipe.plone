@@ -62,6 +62,10 @@ Other possible options in the 'plone' section include:
     plone.theme package) and then add "eggs = plone.theme" to the 'plone'
     section. Alternatively, if you need to upgrade or downgrade a particular
     egg, you can do so with a version specification.
+    
+ find-links -- Specify one or more find-links for setuptools to download
+    eggs from. By default, this includes http://dist.plone.org and any
+    find-links specified in the main [buildout] section.
  
  urls -- A list of URLs to download packages from, overriding those from the
     installer configuration. You can use the options 'nested-packages' and

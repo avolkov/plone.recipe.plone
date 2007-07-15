@@ -19,15 +19,20 @@ class Recipe:
         
         # These options are passed onto the plone.recipe.distros recipe
         
-        download_data = self.plone2_downloads()
+        download_data = self.plone_downloads()
         
         options.setdefault('urls', download_data['urls'])
         options.setdefault('nested-packages', download_data['nested'])
         options.setdefault('version-suffix-packages', download_data['suffixed'])
+        
         self.distros = plone.recipe.distros.Recipe(buildout, name, options)
         
         # These are passed onto zc.recipe.egg.
         options['eggs'] = self.plone_eggs()
+        
+        global_links = buildout['buildout'].get('find-links')
+        find_links = "%s\n%s" % (global_links, 'http://dist.plone.org',)
+        options.setdefault('find-links', find_links)
         self.egg = zc.recipe.egg.Egg(buildout, options['recipe'], options)
         
         # These options are set, but not used. Another recipe may reference it
@@ -85,7 +90,7 @@ class Recipe:
         
         return '\n'.join(eggs)
         
-    def plone2_downloads(self):
+    def plone_downloads(self):
         """Get all Plone product tarballs to download
         """
         urls = []
