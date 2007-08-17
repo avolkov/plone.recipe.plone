@@ -88,7 +88,7 @@ Other possible options in the 'plone' section include:
       keywords='',
       author='Martin Aspeli',
       author_email='optilude@gmx.net',
-      url='http://svn.plone.org/svn/collective/buildout/plone.recipe.plone',
+      url='http://svn.plone.org/svn/plone/dist/plone.recipe.plone',
       license='ZPL 2.1',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['plone.recipe'],
