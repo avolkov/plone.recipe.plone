@@ -1,9 +1,8 @@
 from setuptools import setup, find_packages
-import sys, os
 
 name = "plone.recipe.plone"
 
-version = '3.0rc3'
+version = '3.0'
 
 setup(name=name,
       version=version,
