@@ -70,8 +70,8 @@ class Recipe:
             version = ''
             match = egg_name_re.match(spec)
             if match:
-                name = match.groups(1)
-                version = match.groups(2)
+                name = match.group(1)
+                version = match.group(2)
             explicit_eggs[name] = version
         
         eggs = []
