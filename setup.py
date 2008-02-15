@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 name = "plone.recipe.plone"
 
-version = '3.0.5'
+version = '3.0.6'
 
 setup(name=name,
       version=version,
