@@ -2,18 +2,15 @@ from setuptools import setup, find_packages
 
 name = "plone.recipe.plone"
 
-version = '3.0.6'
+version = '3.1-beta1'
 
 setup(name=name,
       version=version,
       description="Install Plone",
       long_description=open("README.txt").read(),
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
           "License :: OSI Approved :: Zope Public License",
-          "Framework :: Buildout",
           "Framework :: Plone",
-          "Framework :: Zope2",
           "Programming Language :: Python",
           ],
       keywords='',
