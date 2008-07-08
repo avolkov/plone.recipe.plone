@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 name = "plone.recipe.plone"
 
-version = '3.1.2'
+version = '3.1.3'
 
 setup(name=name,
       version=version,
@@ -19,7 +19,7 @@ setup(name=name,
       url='http://svn.plone.org/svn/plone/dist/plone.recipe.plone',
       license='ZPL 2.1',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['plone.recipe'],
+      namespace_packages=['plone', 'plone.recipe'],
       include_package_data=True,
       zip_safe=True,
       install_requires = [
