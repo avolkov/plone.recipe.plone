@@ -19,7 +19,7 @@ setup(name=name,
       url='http://svn.plone.org/svn/plone/dist/plone.recipe.plone',
       license='ZPL 2.1',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['plone', 'plone.recipe'],
+      namespace_packages=['plone.recipe', 'plone'],
       include_package_data=True,
       zip_safe=True,
       install_requires = [
